@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Fleet Registration Renewal Reminder</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <h1>Vehicle Fleet Registration</h1>
+    </header>
+
+    <main>
+        <aside>
+            <h2>Add an Entry</h2>
+
+            <form action= 'http://localhost:4000/add-vehicle'method='POST' >
+                <label for="name-input">Tag No:</label>
+                <input type='text' id="tag-number" name="tagNumber"/>
+
+                <label for="Registration"> Registration Due Date:</label>
+                <input type="date" id="due-date" name="dueDate">
+                <button type="submit">Add</button>
+               
+            </form>
+        </aside>
+        <ul id="vehiclesList"> 
+            
+        </ul>
+
+        <section id="country-list"></section>
+    </main>
+    <script type="module">
+                alert("hi")
+
+    
+    import {vehicles} from '../server/controller.js'
+    function renderVehicles() {
+                vehiclesList.innerHTML = "";
+                vehicles.forEach((v, index) => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<strong>${v.tagNumber}</strong> ${v.dueDate} 
+                        <button onclick="editCar(${index})">Edit</button>`;
+                    vehiclesList.appendChild(listItem);
+                });
+      
+            }
+            renderVehicles()
+    </script>
+</body>
+</html>
