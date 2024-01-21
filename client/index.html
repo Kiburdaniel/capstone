@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicle Fleet Registration Renewal Reminder</title>
-    <link rel="stylesheet" href="index.css">
+    <!-- <link rel="stylesheet" href="index.css"> -->
 </head>
 <body>
     <header>
@@ -33,7 +33,7 @@
         <section id="country-list"></section>
     </main>
     <script type="module">
-                alert("hi")
+               
 
     
     import {vehicles} from '../server/controller.js'
@@ -41,12 +41,14 @@
                 vehiclesList.innerHTML = "";
                 vehicles.forEach((v, index) => {
                     const listItem = document.createElement('li');
-                    listItem.innerHTML = `<strong>${v.tagNumber}</strong> ${v.dueDate} 
+                    listItem.innerHTML = `<strong>${vehicles[index].tag}</strong> ${vehicles[index].expire} 
                         <button onclick="editCar(${index})">Edit</button>`;
                     vehiclesList.appendChild(listItem);
                 });
       
             }
+            //alert(vehicles[0].tag)
+            
             renderVehicles()
     </script>
 </body>
