@@ -1,55 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vehicle Fleet Registration Renewal Reminder</title>
     <!-- <link rel="stylesheet" href="index.css"> -->
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Vehicle Fleet Registration</h1>
+      <h1>Vehicle Fleet Registration Renewal Reminder</h1>
     </header>
 
     <main>
-        <aside>
-            <h2>Add an Entry</h2>
+      <aside>
+        <h2>Add an Entry</h2>
 
-            <form action= 'http://localhost:4000/add-vehicle'method='POST' >
-                <label for="name-input">Tag No:</label>
-                <input type='text' id="tag-number" name="tagNumber"/>
+        <form id="vehicle-form">
+          <label for="tag-number">Tag No:</label>
+          <input type="text" id="tag-number" name="tagNumber" />
 
-                <label for="Registration"> Registration Due Date:</label>
-                <input type="date" id="due-date" name="dueDate">
-                <button type="submit">Add</button>
-               
-            </form>
-        </aside>
-        <ul id="vehiclesList"> 
-            
-        </ul>
-
-        <section id="country-list"></section>
+          <label for="due-date"> Registration Due Date:</label>
+          <input type="date" id="due-date" name="dueDate" />
+          <button type="submit">Add</button>
+        </form>
+        <h3> Show All Vehicles List</h3>
+      </aside>
+      <ul id="vehiclesList"></ul>
     </main>
-    <script type="module">
-               
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    
-    import {vehicles} from '../server/controller.js'
-    function renderVehicles() {
-                vehiclesList.innerHTML = "";
-                vehicles.forEach((v, index) => {
-                    const listItem = document.createElement('li');
-                    listItem.innerHTML = `<strong>${vehicles[index].tag}</strong> ${vehicles[index].expire} 
-                        <button onclick="editCar(${index})">Edit</button>`;
-                    vehiclesList.appendChild(listItem);
-                });
-      
-            }
-            //alert(vehicles[0].tag)
-            
-            renderVehicles()
-    </script>
-</body>
+    <script src="main.js"></script>
+  </body>
 </html>
