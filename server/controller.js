@@ -5,7 +5,7 @@ let vehicles = [
   { tag: "5abc345", expire: "2025-06-15" },
   { tag: "taffsss", expire: "2025-01-17" },
 
-  // more vehicles... 
+  // more vehicles...
 ];
 
 module.exports = {
@@ -29,4 +29,14 @@ module.exports = {
     vehicles.splice(vehicleIndex, 1);
     res.status(200).send(vehicles);
   },
+};
+editVehicle: (req, res) => {
+  let { tag } = req.params;
+  let vehicleIndex = vehicles.findIndex((v) => v.tag === tag);
+  if (vehicleIndex === -1) {
+    res.status(400);
+    return;
+  }
+  array.fill((vehicles.tag = "some new string"), vehicleIndex, vehicleIndex++);
+  res.status(200).send(vehicles);
 };
