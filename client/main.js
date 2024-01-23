@@ -51,7 +51,7 @@ function renderVehicles(array) {
     let now = new Date();
     let d = new Date(v.expire)
     let inlineStyles
-    if (now.getMonth() == d.getMonth()) {
+    if (now.getMonth() == d.getMonth() && now.getFullYear() == d.getFullYear()) {
       inlineStyles = 'color:red'
     } else {
       inlineStyles = 'color:black'

@@ -1,8 +1,9 @@
 let vehicles = [
-  { tag: "9ABC123", expire: "April 23 2024" },
-  { tag: "3XYZ876", expire: "January 30 2024" },
-  { tag: "4xxy123", expire: "February 20 2025" },
-  { tag: "5abc345", expire: "July 15, 2025" },
+  { tag: "9ABC123", expire: "2024-04-23" },
+  { tag: "3XYZ876", expire: "2024-01-30" },
+  { tag: "4xxy123", expire: "2025-02-20" },
+  { tag: "5abc345", expire: "2025-06-15" },
+  { tag: "taffsss", expire: "2025-01-17" },
 
   // more vehicles... 
 ];
