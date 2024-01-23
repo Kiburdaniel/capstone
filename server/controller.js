@@ -4,7 +4,7 @@ let vehicles = [
   { tag: "4xxy123", expire: "February 20 2025" },
   { tag: "5abc345", expire: "July 15, 2025" },
 
-  // more vehicles...
+  // more vehicles... 
 ];
 
 module.exports = {
