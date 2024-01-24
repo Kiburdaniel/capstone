@@ -14,4 +14,4 @@ app.listen(5501, () => console.log("Server running on 5501"));
 app.post("/add-vehicle", controller.addvehicle);
 app.get("/get-vehicles", controller.getvehicles);
 app.delete("/delete/:tag", controller.deleteVehicle);
-app.put("/editVehicle/tag", controller.editVehicle);
+app.put("/editVehicle", controller.editVehicle);

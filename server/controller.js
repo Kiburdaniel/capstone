@@ -33,7 +33,11 @@ module.exports = {
     const tagNumber = req.body.tagNumber;
     const dueDate = req.body.dueDate;
     const img = req.body.img;
-    vehicles.push({ tag: tagNumber, expire: dueDate, img });
+    vehicles.push({
+      tag: tagNumber,
+      expire: dueDate,
+      img: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRpEKVWEYjDWrUjp9pNM8wSeEFljvNL-N579_B_pvN1fZLuob9o",
+    });
     res.status(200).send(vehicles);
   },
   getvehicles: (req, res) => {
@@ -52,17 +56,16 @@ module.exports = {
   },
 
   editVehicle: (req, res) => {
-    let { tag } = req.params;
+    const tag = req.body.tag;
+    const dueDate = req.body.dueDate;
+    console.log(req.body);
     let vehicleIndex = vehicles.findIndex((v) => v.tag === tag);
     if (vehicleIndex === -1) {
       res.status(400);
       return;
     }
-    array.fill(
-      (vehicles.tag = "some new string"),
-      vehicleIndex,
-      vehicleIndex++
-    );
+    vehicles[vehicleIndex].expire = dueDate;
+    
     res.status(200).send(vehicles);
   },
 };

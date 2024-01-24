@@ -22,9 +22,27 @@ function getVehicles() {
     renderVehicles(vehicles);
   });
 }
-vehiclesForm.addEventListener("submit", addVehicles);
-//alert(vehicles[0].tag)
 
+//let editButton = document.querySelector("#editVehicle");
+const editButton = document.getElementById("editButton");
+function editVehicle() {
+  let tag = document.querySelector("#TagNo").value;
+  let dueDate = document.querySelector("#dueDate").value;
+  let body = { tag, dueDate };
+  console.log(body);
+  axios.put("http://localhost:5501/editVehicle", body).then((res) => {
+    let vehicles = res.data;
+    console.log(vehicles);
+    renderVehicles(vehicles);
+  });
+}
+
+vehiclesForm.addEventListener("submit", addVehicles);
+editButton.addEventListener("click", editVehicle);
+
+//editButton.addEventListener("click", editVehicle);
+//alert(vehicles[0].tag)
+//Use addEventListener to call the editVehicle function when the button is clicked
 getVehicles();
 function renderVehicles(array) {
   vehiclesList.innerHTML = "";
