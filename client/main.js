@@ -3,10 +3,10 @@ function addVehicles(e) {
   e.preventDefault();
   let tagNumber = document.querySelector("#tag-number").value;
   let dueDate = document.querySelector("#due-date").value;
-  let body = { tagNumber, dueDate };
+  let img = document.querySelector("#carImg");
+  let body = { tagNumber, dueDate, img };
   console.log(body);
-  const d = new Date(dueDate)
-  console.log(d.getDate())
+
   axios
     .post("http://localhost:5501/add-vehicle", body)
     .then((res) => {
@@ -27,14 +27,17 @@ vehiclesForm.addEventListener("submit", addVehicles);
 
 getVehicles();
 function renderVehicles(array) {
-
   vehiclesList.innerHTML = "";
   array.forEach((v, index) => {
-
-    const listItem = document.createElement("li");
-    listItem.innerHTML = `<strong >${v.tag}</strong> ${v.expire} 
-        <button onclick="editVehicle(${index})">Edit</button>
-        <button onclick="deleteVehicle('${v.tag}')">Delete</button>`;
+    const listItem = document.createElement("div");
+    listItem.innerHTML = `<div class="card" style="width: 18rem;">
+    <img src=${v.img} class="card-img-top img-fluid img-thumbnail "></img>
+    <div class="card-body">
+      <h5 class="card-title">Vehicle Tag: ${v.tag}</h5>
+      <p class="card-text">${v.expire}</p>
+      <a href="#" class="btn btn-danger" onclick= "deleteVehicle('${v.tag}')">Delete</a>
+    </div>
+  </div>`;
     vehiclesList.appendChild(listItem);
   });
 }
@@ -42,25 +45,5 @@ function deleteVehicle(tag) {
   axios.delete(`http://localhost:5501/delete/${tag}`).then((res) => {
     renderVehicles(res.data);
   });
-}
-
-
-function renderVehicles(array) {
-  vehiclesList.innerHTML = "";
-  array.forEach((v, index) => {
-    let now = new Date();
-    let d = new Date(v.expire)
-    let inlineStyles
-    if (now.getMonth() == d.getMonth() && now.getFullYear() == d.getFullYear()) {
-      inlineStyles = 'color:red'
-    } else {
-      inlineStyles = 'color:black'
-    }
-
-    const listItem = document.createElement("li");
-    listItem.innerHTML = `<strong style="${inlineStyles}">${v.tag}</strong> ${v.expire} 
-        <button onclick="editVehicle(${index})">Edit</button>
-        <button onclick="deleteVehicle('${v.tag}')">Delete</button>`;
-    vehiclesList.appendChild(listItem);
-  });
+  console.log(deleteVehicle);
 }
