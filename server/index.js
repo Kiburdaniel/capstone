@@ -6,6 +6,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const controller = require("./controller");
+const nodemon = require("nodemon");
 
 // Controller imports and routes go here
 

@@ -24,8 +24,6 @@ let vehicles = [
     expire: "2025-01-17",
     img: "https://build.ford.com/dig/Ford/Bronco/2024/HD-FULL%5BEXTBCK1%5D/Image%5B%7CFord%7CBronco%7C2024%7C1%7C1.%7C312A.E8B..PE7..887.89V.65H.43E.574.18D.4DR.64F.TFV.60R.ESO.X73.99H.50A.67X.59A.65P.58Z.SRS.17Q.65F.91S.ORB.44T.65C.LTV.%5D/EXT/4/vehicle.png",
   },
-
-  // more vehicles...
 ];
 
 module.exports = {
@@ -65,7 +63,7 @@ module.exports = {
       return;
     }
     vehicles[vehicleIndex].expire = dueDate;
-    
+
     res.status(200).send(vehicles);
   },
 };
