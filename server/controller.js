@@ -26,6 +26,13 @@ let vehicles = [
   },
 ];
 
+vehicles = vehicles.sort((a, b) => {
+  const dateA = new Date(a.expire);
+  const dateB = new Date(b.expire);
+
+  return dateA - dateB;
+});
+
 module.exports = {
   addvehicle: (req, res) => {
     const tagNumber = req.body.tagNumber;
@@ -51,19 +58,19 @@ module.exports = {
     }
     vehicles.splice(vehicleIndex, 1);
     res.status(200).send(vehicles);
-  },
+  }
 
-  editVehicle: (req, res) => {
-    const tag = req.body.tag;
-    const dueDate = req.body.dueDate;
-    console.log(req.body);
-    let vehicleIndex = vehicles.findIndex((v) => v.tag === tag);
-    if (vehicleIndex === -1) {
-      res.status(400);
-      return;
-    }
-    vehicles[vehicleIndex].expire = dueDate;
+  // editVehicle: (req, res) => {
+  //   const tag = req.body.tag;
+  //   const dueDate = req.body.dueDate;
+  //   console.log(req.body);
+  //   let vehicleIndex = vehicles.findIndex((v) => v.tag === tag);
+  //   if (vehicleIndex === -1) {
+  //     res.status(400);
+  //     return;
+  //   }
+  //   vehicles[vehicleIndex].expire = dueDate;
 
-    res.status(200).send(vehicles);
-  },
-};
+  //   res.status(200).send(vehicles);
+  // },
+}
