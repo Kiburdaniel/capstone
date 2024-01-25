@@ -43,15 +43,32 @@ getVehicles();
 function renderVehicles(array) {
   vehiclesList.innerHTML = "";
   array.forEach((v, index) => {
+
+    let now = new Date();
+    let d = new Date(v.expire)
+    let inlineStyles
+    if (now.getMonth() == d.getMonth() && now.getFullYear() == d.getFullYear()) {
+      inlineStyles = 'color:red; background-color:black;'
+    } else {
+      inlineStyles = 'color:black'
+    }
+
     const listItem = document.createElement("div");
-    listItem.innerHTML = `<div class="card" style="width: 18rem;">
-    <img src=${v.img} class="card-img-top img-fluid img-thumbnail "></img>
-    <div class="card-body">
-      <h5 class="card-title">Vehicle Tag: ${v.tag}</h5>
-      <p class="card-text">${v.expire}</p>
-      <a href="#" class="btn btn-danger" onclick= "deleteVehicle('${v.tag}')">Delete</a>
+    listItem.innerHTML = `
+    <div class="container d-flex justify-content-between">
+      <div class="col-md-4 mb-3">
+        <div class="card" style="width: 18rem;">
+          <img src=${v.img} class="card-img-top img-fluid img-thumbnail"></img>
+          <div class="card-body">
+            <h5 class="card-title" style="${inlineStyles}">Vehicle Tag: ${v.tag}</h5>
+            <p class="card-text">${v.expire}</p>
+            <a href="#" class="btn btn-secondary" onclick= "editVehicle('${index}')">Edit</a>
+            <a href="#" class="btn btn-danger" onclick= "deleteVehicle('${v.tag}')">Delete</a>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>`;
+    `;
     vehiclesList.appendChild(listItem);
   });
 }
@@ -60,4 +77,37 @@ function deleteVehicle(tag) {
     renderVehicles(res.data);
   });
   console.log(deleteVehicle);
+}
+
+function editVehicle(index) {
+  axios.get("http://localhost:5501/get-vehicles").then((res) => {
+    let vehicles = res.data;
+    //renderVehicles(vehicles);
+    let tagInput = document.getElementById('TagNo')
+    tagInput.value = vehicles[index].tag
+
+    let exDate = document.getElementById('dueDate')
+    exDate.value = vehicles[index].expire
+
+    let hiddenIndex = document.getElementById('hiddenIndex')
+    hiddenIndex.value = index
+
+  });
+
+
+}
+
+function saveEditedVehicle() {
+  axios.get("http://localhost:5501/get-vehicles").then((res) => {
+    let vehicles = res.data;
+    let tagInput = document.getElementById('TagNo').value
+    let exDate = document.getElementById('dueDate').value
+    let hiddenIndex = document.getElementById('hiddenIndex').value
+
+    vehicles[hiddenIndex].tag = tagInput
+    vehicles[hiddenIndex].expire = exDate
+    renderVehicles(vehicles);
+
+  });
+
 }

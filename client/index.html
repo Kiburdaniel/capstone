@@ -12,13 +12,14 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+
+   
   </head>
   <body>
-    <header>
-      <h1>Vehicle Fleet Registration Renewal Reminder</h1>
-    </header>
-
-    <main>
+    <main class="container" style="background-color: lightblue;">
+      <header>
+        <h1>Vehicle Fleet Registration Renewal Reminder</h1>
+      </header>
       <aside>
         <h3>Add a vehicle to the inventory</h3>
 
@@ -41,15 +42,20 @@
         class="d-flex flex-wrap justify-content-evenly"
       ></div>
       <div>
-        <form id="editVehicle">Update Registration</form>
+        <form id="editVehicleForm">Update Registration</form>
         <label for="Tag No">Tag No:</label>
         <input type="text" id="TagNo" name="tagNumber" />
         <input type="date" id="dueDate" name="dueDate" />
-        <button type="submit" id="editButton">submit</button>
+        <input type="hidden" id="hiddenIndex" name="hiddenField">
+        <button type="submit" id="editButton" onclick="saveEditedVehicle()">submit</button>
       </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script src="main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>
